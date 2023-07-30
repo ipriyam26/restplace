@@ -11,6 +11,7 @@ numpy = "^1.25.1"
 matplotlib = "^3.7.2"
 seaborn = "^0.12.2"
 keras = "^2.13.1"
+graphviz = "^0.20.1"
 
 
 [build-system]
