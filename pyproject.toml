@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "restplace"
+version = "0.1.0"
+description = ""
+authors = ["Priyam Srivastava <ipriyam26@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^1.25.1"
+matplotlib = "^3.7.2"
+seaborn = "^0.12.2"
+keras = "^2.13.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
