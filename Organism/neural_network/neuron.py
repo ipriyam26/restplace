@@ -1,4 +1,5 @@
 from typing import Dict, List
+from organism.main import Organism
 from organism.neural_network.actions import ActionComputation
 from organism.neural_network.connection import Connection
 from organism.sensory_input import SensoryComputation
@@ -21,7 +22,7 @@ class SensoryNeuron(Neuron):
         super().__init__(neuron_id)
         self.computation = computation
 
-    def update_value(self, organism, environment):
+    def update_value(self, organism:Organism, environment):
         self.value = self.computation.compute(organism, environment)
 
 class InternalNeuron(Neuron):

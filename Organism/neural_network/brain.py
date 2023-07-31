@@ -1,11 +1,11 @@
 from typing import List
+from organism.main import Organism
 from organism.neural_network.connection import Connection
 from organism.neural_network.neuron import ActionNeuron, InternalNeuron, Neuron, SensoryNeuron
 
 
 class NeuralNetwork:
     def __init__(self, neurons:List[Neuron], connections:List[Connection], max_iterations=100):
-        self.neurons = {neuron.neuron_id: neuron for neuron in neurons}
         for conn in connections:
             self.neurons[conn.sink.neuron_id].add_connection(conn)
         self.max_iterations = max_iterations
@@ -13,10 +13,11 @@ class NeuralNetwork:
         self.internal_neurons = [neuron for neuron in neurons if not isinstance(neuron, InternalNeuron)]
         self.action_neurons = [neuron for neuron in neurons if isinstance(neuron, ActionNeuron)]
 
-    def process(self):
+    def process(self, organism:Organism, environment):
+
         # Update sensory neurons
         for neuron in self.sensory_neurons:
-            neuron.update_value(self.organism.current_state)
+            neuron.update_value(organism, environment)
         
         # Update internal neurons until values stabilize
         for _ in range(self.max_iterations):
