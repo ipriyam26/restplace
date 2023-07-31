@@ -1,11 +1,21 @@
+from dataclasses import dataclass
 from organism.neural_network.brain import NeuralNetwork
 
+@dataclass
+class PhysicalAttributes:
+    x: int
+    y: int
+    pheronome: float
+    oscillator: float
+    genome:str
+    age:int
+    id:int
+
 class Organism:
-    def __init__(self, x:int, y:int, neural_network: NeuralNetwork,id:int):
-        self.x = x
-        self.y = y
+    def __init__(self, x:int, y:int, neural_network: NeuralNetwork,id:int,genome:str):
         self.neural_network = neural_network
         self.id = id
+        self.attributes = PhysicalAttributes(x=x,y=y,pheronome=0,oscillator=0,genome=genome,age=0,id=id)
 
     def step(self, environment):
         self.neural_network.process(organism=self, environment=environment)
@@ -20,4 +30,8 @@ class Organism:
         
         if best_action:
             best_action.perform(self)
+
+
+
+
 

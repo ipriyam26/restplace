@@ -3,17 +3,14 @@ from organism.main import Organism
 
 
 class EnvironmentState:
-    def __init__(self):
-        self.history:Dict[int,List[tuple[int,int]]]={}
-        self.positions:Dict[int, tuple[int, int]] = {}
+    def __init__(self,length:int,width:int):
+        self.board = [[0 for _ in range(width)] for _ in range(length)]
+
 
     def update(self, organisms:List[Organism]):
-        # Update positions based on the current state of the organisms
-        self.positions = {organism.id: (organism.x,organism.y) for organism in organisms}
-        #for each organism update the history of positions of each organism, i.e add then to a list
+        self.board = [[0 for _ in range(len(self.board[0]))] for _ in range(len(self.board))]
         for organism in organisms:
-            old_value = self.history.get(organism.id,[])
-            self.history[organism.id] = old_value + [(organism.x,organism.y)]
+            self.board[organism.x][organism.y] = organism.id
 
     def get_position(self):
         return self.positions

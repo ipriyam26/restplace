@@ -16,7 +16,8 @@ class Environment:
 
     def step(self):
         # Update state based on current state of environment
-        self.environment_state.update(self)
+        self.environment_state.update(self.organisms)
+
 
         # Update each organism based on the state of the environment
         for organism in self.organisms:
@@ -27,3 +28,5 @@ class Environment:
 
     def get_state(self):
         return self.environment_state
+
+
