@@ -13,6 +13,11 @@ class NeuralNetwork:
         self.internal_neurons = [neuron for neuron in neurons if not isinstance(neuron, InternalNeuron)]
         self.action_neurons = [neuron for neuron in neurons if isinstance(neuron, ActionNeuron)]
 
+    @classmethod
+    def from_genome(cls, genome:str):
+        pass
+
+
     def process(self, organism:Organism, environment):
 
         # Update sensory neurons

@@ -12,8 +12,8 @@ class PhysicalAttributes:
     id:int
 
 class Organism:
-    def __init__(self, x:int, y:int, neural_network: NeuralNetwork,id:int,genome:str):
-        self.neural_network = neural_network
+    def __init__(self, x:int, y:int,id:int,genome:str):
+        self.neural_network = NeuralNetwork()
         self.id = id
         self.attributes = PhysicalAttributes(x=x,y=y,pheronome=0,oscillator=0,genome=genome,age=0,id=id)
 
