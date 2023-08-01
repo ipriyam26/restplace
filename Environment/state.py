@@ -6,7 +6,7 @@ import copy
 class EnvironmentState:
     def __init__(self, width: int, height: int):
         self.board = [[None for _ in range(width)] for _ in range(height)]
-        self.history: list[list[list[PhysicalAttributes|None]]] = []
+        self.history: list[list[list[PhysicalAttributes | None]]] = []
 
     def update(self, attributes: List[PhysicalAttributes]):
         self.history.append(copy.deepcopy(self.board))

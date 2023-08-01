@@ -31,7 +31,6 @@ class Environment:
         # Remove organisms that don't meet the selection criteria
         self.organisms = self.selection_strategy.select(self.organisms)
         self.environment_state.update(self.get_attributes())
- 
 
     def get_state(self):
         return self.environment_state
