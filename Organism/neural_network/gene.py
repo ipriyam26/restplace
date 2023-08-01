@@ -18,7 +18,9 @@ class Gene:
     @classmethod
     def from_binary(cls, binary_string: str):
         try:
-            hex_value = hex(int(binary_string, 2))[2:]  # convert binary to hex and remove '0x' prefix
+            hex_value = hex(int(binary_string, 2))[
+                2:
+            ]  # convert binary to hex and remove '0x' prefix
         except ValueError as e:
             raise ValueError(f"{binary_string} is not a valid binary number") from e
 
@@ -30,24 +32,36 @@ class Gene:
     def to_hex(self) -> str:
         return self.value
 
-    def parse(self, num_sensory_neurons: int, num_internal_neurons: int, num_action_neurons: int):
+    def parse(
+        self,
+        num_sensory_neurons: int,
+        num_internal_neurons: int,
+        num_action_neurons: int,
+    ):
         # Check if there are more neurons than can be addressed with 8 bits
-        if any(x > 256 for x in [num_sensory_neurons, num_internal_neurons, num_action_neurons]):
+        if any(
+            x > 256
+            for x in [num_sensory_neurons, num_internal_neurons, num_action_neurons]
+        ):
             raise ValueError("Number of neurons cannot be more than 256")
 
         binary = self.to_binary()
         source_type = int(binary[0], 2)
-        source_id = int(binary[1:9], 2) % (num_sensory_neurons if source_type == 0 else num_internal_neurons)
-        
+        source_id = int(binary[1:9], 2) % (
+            num_sensory_neurons if source_type == 0 else num_internal_neurons
+        )
+
         sink_type = int(binary[9], 2)
-        sink_id = int(binary[10:18], 2) % (num_internal_neurons if sink_type == 0 else num_action_neurons)
-        
+        sink_id = int(binary[10:18], 2) % (
+            num_internal_neurons if sink_type == 0 else num_action_neurons
+        )
+
         weight = int(binary[18:], 2) / (2**12 - 1) * 8 - 4  # scale to [-4, 4]
-        
+
         return {
-            'source_type': 'sensory' if source_type == 0 else 'internal',
-            'source_id': source_id,
-            'sink_type': 'internal' if sink_type == 0 else 'action',
-            'sink_id': sink_id,
-            'weight': weight,
+            "source_type": "sensory" if source_type == 0 else "internal",
+            "source_id": source_id,
+            "sink_type": "internal" if sink_type == 0 else "action",
+            "sink_id": sink_id,
+            "weight": weight,
         }

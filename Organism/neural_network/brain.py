@@ -29,7 +29,7 @@ class NeuralNetwork:
 
         self.max_iterations = max_iterations
 
-    def add_connection(self, connections:list[dict[str, Any]]):
+    def add_connection(self, connections: list[dict[str, Any]]):
         for conn in connections:
             source_type: str = conn["source_type"]
             source_id: int = conn["source_id"]
