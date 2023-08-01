@@ -1,7 +1,3 @@
-Sure! Here is a draft project description for your natural selection simulation:
-
----
-
 # Natural Selection Simulation
 
 This project is a simulation of an ecosystem undergoing natural selection, demonstrating the principles of evolution in action.

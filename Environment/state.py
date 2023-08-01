@@ -1,5 +1,5 @@
-from typing import Dict, List
-from organism.main import Organism, PhysicalAttributes
+from typing import List
+from organism.main import PhysicalAttributes
 import copy
 
 
