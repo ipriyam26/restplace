@@ -1,10 +1,10 @@
 from typing import Any, Dict, List
-from organism.main import Organism
+from environment.state import EnvironmentState
+from organism.organism import Organism
 from organism.neural_network.connection import Connection
 from organism.neural_network.neuron import (
     ActionNeuron,
     InternalNeuron,
-    Neuron,
     SensoryNeuron,
 )
 from organism.neural_network.gene import Gene
@@ -75,15 +75,15 @@ class NeuralNetwork:
     #         for gene in genes:
     #             conn = gene.parse()
 
-    def process(self, organism: Organism, environment):
+    def process(self, organism: Organism, environment_state: EnvironmentState):
         # Update sensory neurons
-        for neuron in self.sensory_neurons:
-            neuron.update_value(organism, environment)
+        for _,neuron in self.sensory_neurons.items():
+            neuron.update_value(organism, environment_state)
 
         # Update internal neurons until values stabilize
         for _ in range(self.max_iterations):
             value_cache = {
-                neuron.neuron_id: neuron.get_value() for neuron in self.internal_neurons
+                neuron.neuron_id: neuron.get_value() for _,neuron in self.internal_neurons.items()
             }
             change_occurred = False
             for neuron in self.internal_neurons:

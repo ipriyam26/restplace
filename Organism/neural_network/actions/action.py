@@ -1,4 +1,4 @@
-from organism.main import Organism
+from organism.organism import Organism
 
 
 class Action:
