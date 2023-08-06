@@ -77,13 +77,14 @@ class NeuralNetwork:
 
     def process(self, organism: Organism, environment_state: EnvironmentState):
         # Update sensory neurons
-        for _,neuron in self.sensory_neurons.items():
+        for _, neuron in self.sensory_neurons.items():
             neuron.update_value(organism, environment_state)
 
         # Update internal neurons until values stabilize
         for _ in range(self.max_iterations):
             value_cache = {
-                neuron.neuron_id: neuron.get_value() for _,neuron in self.internal_neurons.items()
+                neuron.neuron_id: neuron.get_value()
+                for _, neuron in self.internal_neurons.items()
             }
             change_occurred = False
             for neuron in self.internal_neurons:

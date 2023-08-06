@@ -33,13 +33,13 @@ class Organism:
             genes=self.neural_network.genes,
         )
 
-    def step(self, environment:EnvironmentState):
+    def step(self, environment: EnvironmentState):
         self.neural_network.process(organism=self, environment=environment)
 
         # Select the ActionNeuron with the highest value
         max_value = -float("inf")
         best_action = None
-        for _,action_neuron in self.neural_network.action_neurons.items():
+        for _, action_neuron in self.neural_network.action_neurons.items():
             if action_neuron.get_value() > max_value:
                 max_value = action_neuron.get_value()
                 best_action = action_neuron.get_action()

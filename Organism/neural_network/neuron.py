@@ -25,7 +25,7 @@ class SensoryNeuron(Neuron):
         super().__init__(neuron_id)
         self.computation = computation
 
-    def update_value(self, organism: Organism, environment_state:EnvironmentState):
+    def update_value(self, organism: Organism, environment_state: EnvironmentState):
         self.value = self.computation.compute(organism, environment_state)
 
 
